@@ -1,4 +1,4 @@
-_tag_('jqtags.date',function(form){
+_tag_('jqtags.date',function(date){
 	
 	return {
 	    tagName: "jq-date",
