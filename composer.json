@@ -1,0 +1,13 @@
+{
+    "name": "jqtags/jq-date",
+    "type": "tag",
+    "description": "advanced ajax form tag",
+    "keywords": ["x-tag", "polymer", "pitana"],
+    "license": "MIT",
+
+    "require": {
+      "jqgeeks/jqtag" : ">=0.0.1",
+      "jqmodules/jq2much" : ">=0.0.0"
+    }
+    
+}

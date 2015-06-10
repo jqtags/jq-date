@@ -1,0 +1,14 @@
+{
+	"name" : "jqtags/jq-date",
+	"modules" : [
+		{
+			"name" : "jqtags/jq-date",
+			"js" : [
+				"jqtags.date.js"
+			],
+			"css" : [],
+			"dependsOn" : []
+		}
+	]
+
+}
