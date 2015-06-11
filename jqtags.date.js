@@ -1,6 +1,6 @@
 _tag_('jqtags.date',function(date){
 	
-	_require_(":dbushell/pikaday",":webmodules/moment");
+	_require_(":webmodules/moment",":webmodules/pikaday");
 	var jq = _module_("jQuery");
 	var Pikaday = _module_("Pikaday");
 	var moment = _module_("moment");
