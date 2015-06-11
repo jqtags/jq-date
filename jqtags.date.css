@@ -1,0 +1,16 @@
+jq-date {
+	position: relative;
+	margin-right : 20px;
+}
+
+jq-date:before {
+	content: '';
+	position: absolute;
+	bottom: 0px;
+	left: 100%;
+	width: 20px;
+	height: 100%;
+	background-color: red;
+	cursor: pointer;
+	pointer-events: all;
+}
