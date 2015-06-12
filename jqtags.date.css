@@ -1,16 +1,43 @@
 jq-date {
 	position: relative;
-	margin-right : 20px;
+	background-color : blue;
+	display :inline-block;
+	padding-right : 20px;
+	margin : 0px 0px 0px 0px;
+	
+   -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+    background-color: white;
+    background-color: -moz-field;
+    border: 1px solid darkgray;
+    box-shadow: 1px 1px 1px 0 lightgray inset;  
+    font: -moz-field;
+    font: -webkit-small-control;
+    margin-top: 5px;
+    padding: 0px 0px;
+    min-width: 157px;
 }
 
-jq-date:before {
+jq-date value,jq-date input {
+  	display: inline-block;
+	line-height: 20px;
+    min-height: 28px;
+    min-width: 144px;
+    height: 100%;
+    line-height: 20px;
+    min-height: 28px;
+    min-width: 137px;
+   	width: 137px;
+    background-color : #FFFF00;
+}
+
+jq-date icon:before {
 	content: '';
 	position: absolute;
 	bottom: 0px;
-	left: 100%;
 	width: 20px;
 	height: 100%;
-	background-color: red;
+	background-color: grey;
 	cursor: pointer;
 	pointer-events: all;
 }

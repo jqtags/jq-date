@@ -4,25 +4,50 @@ _tag_('jqtags.date',function(date){
 	var jq = _module_("jQuery");
 	var Pikaday = _module_("Pikaday");
 	var moment = _module_("moment");
-	var self, $tag, pickerIsOpen = false, format;
+	var self, $tag, pickerIsOpen = false, editable=false, format;
 	var DEFAULT_FORMAT = "DD MMM YYYY";
 	var DEFAULT_DATE_CONVENTION = 0;
 	var M = moment();
 	
 	//moment("12-25-1995", "MM-DD-YYYY").format("DD-MM-YYYY")
+	//pitana.domEvents.trigger(this.$, eventName, detail);
 	
 	jq("body").on("blur","jq-date input", function(e){
-		$tag = jq(e.target).closest('jq-date');
-		var m = date.getDateFromText(e.target.value);
-		$tag[0].value = m.format(DEFAULT_FORMAT);
-		$tag[0].innerHTML = m.format($tag[0].format) ;
+		if(editable){
+			$tag = jq(e.target).closest('jq-date');
+			if(changeValue($tag[0],e.target.value)){
+				date.trigger($tag[0],"change");
+			}
+			editable = false;
+		}
+		return window.preventPropagation(e);
 	});
+	
+	var setHTML = function(tag,html){
+		tag.getElementsByTagName('value')[0].innerHTML = html;
+	};
+	
+	var changeValue = function(tag,value){
+		var oldValue = tag.value;
+		if(value){
+	    	var m = date.getDateFromText(value);
+	    	tag.value = m.format(DEFAULT_FORMAT);
+			setHTML(tag,m.format(tag.format));
+		} else {
+			tag.value = "";
+			setHTML(tag,"");
+		}
+		return (oldValue!==tag.value)
+	};
 	
 	tag =  {
 	    tagName: "jq-date",
 	    events: {
-	        "click span":"showPicker",
-	        "dblclick span" : "makeEditable"
+	        "click icon":"showPicker",
+	        "dblclick value" : "makeEditable",
+	        "keydown" : "makeEditable",
+	        "keyup" : "onKeyUP",
+	        "change" : "onchange"
 	    },
 	    accessors: {
 	        value: {
@@ -41,20 +66,30 @@ _tag_('jqtags.date',function(date){
 	    attachedCallback: function () {
 	    	//this.$.innerHTML = '<span class="icon">D</span>'
 	    	this.$.setAttribute("tabindex",this.$.tabindex);
+	    	this.$.innerHTML = '<value></value><icon></icon>';
+	    	changeValue(this.$,this.$.value);
 	    	//this.$.setAttribute("pointer","pointer");
 	    },
-	    formatDate : function(){
-	    	this.$.innerHTML = this.$.value;
-	    },
-	    makeEditable : function(){
-	    	this.$.innerHTML = '<input tabindex=-1 value="'+this.$.value+'">';
-	    	if(date.picker){
-	    		date.picker.destroy();
+	    onchange : function(e,target){
+	    	if(target!== e.originalTarget || (e.firedBy && e.firedBy.el!==target) ){
+	    		return window.preventPropagation(e);
 	    	}
 	    },
-	    makeNonEditable : function(e){
-	    	console.log(e)
-	    	this.formatDate();
+	    onKeyUP : function(e){
+	    	var key = e.which || e.key;
+	    	if(key===13){
+	    		this.$.getElementsByTagName('input')[0].blur();
+	    	}
+	    },
+	    makeEditable : function(){
+	    	if(!editable){
+	    		setHTML(this.$,'<input tabindex=-1 value="'+this.$.value+'">')
+		    	if(date.picker){
+		    		date.picker.destroy();
+		    	}
+	    		this.$.getElementsByTagName('input')[0].select();
+		    	editable = true;
+	    	}
 	    },
 	    showPicker : function(){
 	    	self = this;
@@ -62,13 +97,14 @@ _tag_('jqtags.date',function(date){
 	    	if(pickerIsOpen !== true){
 	    		pickerIsOpen = true
 	    		format = this.$.format;
-	    		console.log(this.$.format)
 		    	date.picker = new Pikaday({ 
-		    		field: this.$,
+		    		field : this.$.getElementsByTagName('icon')[0],
+		    		trigger: this.$,
 		            format: format,
 		            onSelect: function(value) {
-		            	console.info(value);
-		            	self.$.innerHTML = date.picker.toString("YYYY-MM-DD");
+		            	if(changeValue(self.$,date.picker.toString())){
+		            		self.trigger("change");
+		            	}
 		            },
 		            onClose : function(){
 		            	pickerIsOpen = false

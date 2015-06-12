@@ -1,7 +1,7 @@
 Sample Code: 
 ```html
-	<jq-date value="gen" id="sampledate">
-	</jq-date>
+<jq-date id="sampledate">
+</jq-date>
 ```
 Using jQuery you can get/set value
 
