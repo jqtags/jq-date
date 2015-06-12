@@ -212,11 +212,6 @@ _tag_('jqtags.date',function(date){
 				return moment.unix(dateString)
 			}
 		} 
-		
-		if(dateObj.isTenor){
-			
-		}
-		
 		return moment("INVALID_DATE");
 	};
 	
