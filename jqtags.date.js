@@ -45,14 +45,15 @@ _tag_('jqtags.date',function(date){
 	    events: {
 	        "click icon":"showPicker",
 	        "dblclick value" : "makeEditable",
-	        "keydown" : "makeEditable",
+	        "keydown" : "onKeyDown",
 	        "keyup" : "onKeyUP",
 	        "change" : "onchange"
 	    },
 	    accessors: {
 	        value: {
 	            type: "string",
-	            default : ""
+	            default : "",
+	            onChange : "valueOnSet"
 	        },
 	        format : {
 	        	type : 'string',
@@ -75,13 +76,24 @@ _tag_('jqtags.date',function(date){
 	    		return window.preventPropagation(e);
 	    	}
 	    },
+	    valueOnSet : function(e){
+	    	if(changeValue(this.$,this.$.value)){
+        		//self.trigger("change");
+        	}
+	    },
 	    onKeyUP : function(e){
 	    	var key = e.which || e.key;
-	    	if(key===13){
+	    	if(key===13 && editable){
 	    		this.$.getElementsByTagName('input')[0].blur();
 	    	}
 	    },
-	    makeEditable : function(){
+	    onKeyDown : function(e,target){
+	    	var key = date.key(e);
+	    	if(!key.isNavKey){
+	    		return this.makeEditable(e,target);
+	    	}
+	    },
+	    makeEditable : function(e,target){
 	    	if(!editable){
 	    		setHTML(this.$,'<input tabindex=-1 value="'+this.$.value+'">')
 		    	if(date.picker){
