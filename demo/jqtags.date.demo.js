@@ -11,14 +11,14 @@ _spam_('jqtags.date.demo',function(demo,_demo_){
 			src : "test.html"
 		}).done(function(){
 			self.$$.on("change","#sampledate", function(e){
-				console.info("value changed",e)
+				console.info("jquery.on value changed====",e)
 				//self.model().dateValue = e.target.value;
 			});
 		});
 	};
 	
 	_demo_.mychangefun = function(e){
-		console.info("eee",e);
+		console.info("_demo_.mychangefun eee====",e);
 	}
 	
 });

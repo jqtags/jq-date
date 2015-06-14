@@ -16,7 +16,8 @@ _tag_('jqtags.date',function(date){
 		if(editable){
 			$tag = jq(e.target).closest('jq-date');
 			if(changeValue($tag[0],e.target.value)){
-				date.trigger($tag[0],"change");
+				//date.trigger($tag[0],"input");
+				//date.trigger($tag[0],"change");
 			}
 			editable = false;
 		}
@@ -47,7 +48,7 @@ _tag_('jqtags.date',function(date){
 	        "dblclick value" : "makeEditable",
 	        "keydown" : "onKeyDown",
 	        "keyup" : "onKeyUP",
-	        "change" : "onchange"
+	        "change" : "onchange",
 	    },
 	    accessors: {
 	        value: {
@@ -72,7 +73,7 @@ _tag_('jqtags.date',function(date){
 	    	//this.$.setAttribute("pointer","pointer");
 	    },
 	    onchange : function(e,target){
-	    	if(target!== e.originalTarget || (e.firedBy && e.firedBy.el!==target) ){
+	    	if(target!==this.$ || target!== e.originalTarget || (e.firedBy && e.firedBy.el!==target) ){
 	    		return window.preventPropagation(e);
 	    	}
 	    },
@@ -95,12 +96,28 @@ _tag_('jqtags.date',function(date){
 	    },
 	    makeEditable : function(e,target){
 	    	if(!editable){
+	    		console.warn("edint mode enter",e,target);
+	    		var self = this;
 	    		setHTML(this.$,'<input tabindex=-1 value="'+this.$.value+'">')
+	    		$(this.$).find('input').change(function(e2){
+	    			console.log("eeeee",e2);
+	    			if(editable){
+		    			//$tag = jq(e.target).closest('jq-date');
+		    			if(changeValue(self.$,e2.target.value)){
+		    				date.trigger(self.$,"input");
+		    				date.trigger(self.$,"change");
+		    			}
+		    			editable = false;
+		    		}
+		    		return window.preventPropagation(e2);
+	    		});
+	    		
 		    	if(date.picker){
 		    		date.picker.destroy();
 		    	}
 	    		this.$.getElementsByTagName('input')[0].select();
 		    	editable = true;
+		    	console.warn("edint mode enter dnoe",e,target);
 	    	}
 	    },
 	    showPicker : function(){
@@ -109,17 +126,23 @@ _tag_('jqtags.date',function(date){
 	    	if(pickerIsOpen !== true){
 	    		pickerIsOpen = true
 	    		format = this.$.format;
+	    		var $value = $(this.$).find('value');
+	    		$value.on("change",function(e2){
+		    		return window.preventPropagation(e2);
+	    		});
 		    	date.picker = new Pikaday({ 
-		    		field : this.$.getElementsByTagName('icon')[0],
-		    		trigger: this.$,
+		    		field : $value[0],
+		    		trigger: this.$,//.getElementsByTagName('icon')[0],
 		            format: format,
 		            onSelect: function(value) {
 		            	if(changeValue(self.$,date.picker.toString())){
+		            		self.trigger("input");
 		            		self.trigger("change");
 		            	}
 		            },
 		            onClose : function(){
 		            	pickerIsOpen = false
+		            	$value.off();
 		            	date.picker.destroy();
 		            }
 		    	});
