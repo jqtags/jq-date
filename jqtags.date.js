@@ -99,7 +99,7 @@ _tag_('jqtags.date',function(date){
 	    		console.warn("edint mode enter",e,target);
 	    		var self = this;
 	    		setHTML(this.$,'<input tabindex=-1 value="'+this.$.value+'">')
-	    		$(this.$).find('input').change(function(e2){
+	    		$(this.$).find('input').one("change",function(e2){
 	    			console.log("eeeee",e2);
 	    			if(editable){
 		    			//$tag = jq(e.target).closest('jq-date');
@@ -117,7 +117,6 @@ _tag_('jqtags.date',function(date){
 		    	}
 	    		this.$.getElementsByTagName('input')[0].select();
 		    	editable = true;
-		    	console.warn("edint mode enter dnoe",e,target);
 	    	}
 	    },
 	    showPicker : function(){

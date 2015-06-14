@@ -14,6 +14,7 @@
 |Tag| Method | Arguments | Returns | Description
 |------|-----|-----|------|------|
 | jq-date |val|  | string |  date in  DD MMM YYYY format|
+| jq-date |val| string | |  sets the date of tag, accepts input in all the valid formats, also tenors like (1d,2m,5w,2y)
 
 
 
