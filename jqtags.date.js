@@ -96,11 +96,9 @@ _tag_('jqtags.date',function(date){
 	    },
 	    makeEditable : function(e,target){
 	    	if(!editable){
-	    		console.warn("edint mode enter",e,target);
 	    		var self = this;
 	    		setHTML(this.$,'<input tabindex=-1 value="'+this.$.value+'">')
 	    		$(this.$).find('input').one("change",function(e2){
-	    			console.log("eeeee",e2);
 	    			if(editable){
 		    			//$tag = jq(e.target).closest('jq-date');
 		    			if(changeValue(self.$,e2.target.value)){
