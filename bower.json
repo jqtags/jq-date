@@ -1,0 +1,19 @@
+{
+  "name": "jqtags-jq-date",
+  "version": "0.0.3",
+  "homepage": "https://github.com/jqtags/jq-date",
+  "authors": [
+    "Lalit Tanwar <lalit.tanwar07@gmail.com>"
+  ],
+  "description": "Pitana based tag for date widget",
+  "main": "jqtags.date.js",
+  "keywords": [
+    "date",
+    "pitana",
+    "x-tag"
+  ],
+  "require" : {
+    "webmodules-moment" : "latest"
+  },
+  "license": "MIT"
+}
