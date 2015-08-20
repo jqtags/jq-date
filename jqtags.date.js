@@ -1,6 +1,5 @@
 _tag_('jqtags.date',function(date){
 	
-	_require_(":webmodules/moment",":webmodules/pikaday");
 	var jq = _module_("jQuery");
 	var Pikaday = _module_("Pikaday");
 	var moment = _module_("moment");
@@ -23,11 +22,15 @@ _tag_('jqtags.date',function(date){
 		}
 		return window.preventPropagation(e);
 	});
-	
-	var setHTML = function(tag,html){
-		tag.getElementsByTagName('value')[0].innerHTML = html;
-	};
-	
+
+  var setHTML = function(tag,html) {
+    try {
+      tag.getElementsByTagName('value')[0].innerHTML = html;
+    } catch(e){
+      console.warn("jqtags.date",e);
+    }
+  };
+
 	var changeValue = function(tag,value){
 		var oldValue = tag.value;
 		if(value){

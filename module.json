@@ -1,14 +1,14 @@
 {
-	"name" : "jqtags/jq-date",
-	"modules" : [
-		{
-			"name" : "jqtags/jq-date",
-			"js" : [
-				"jqtags.date.js"
-			],
-			"css" : [],
-			"dependsOn" : []
-		}
-	]
+  "name": "jqtags/jq-date",
+  "jqtags/jq-date": {
+    "js": [ "jqtags.date.js"],
+    "css": ["jqtags.date.css"],
+    "on" : ["jqmodules/pikaday"]
+  },
+  "jqtags/jq-date/test": {
+    "js": [
+      "test/jqtags.date.test.js"
+    ]
+  }
 
 }
