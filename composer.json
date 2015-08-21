@@ -6,7 +6,7 @@
     "license": "MIT",
 
     "require": {
-      "jqgeeks/jqtag" : ">=0.0.1",
+      "jqgeeks/jqtag" : ">=0.0.4",
       "jqmodules/jq2much" : ">=0.0.0",
       "webmodules/moment" : ">=2.10.4",
       "webmodules/pikaday" : ">=1.3.3"
