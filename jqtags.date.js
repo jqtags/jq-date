@@ -51,7 +51,7 @@ _tag_('jqtags.date',function(date){
 	        "dblclick value" : "makeEditable",
 	        "keydown" : "onKeyDown",
 	        "keyup" : "onKeyUP",
-	        "change" : "onchange",
+	        "change" : "onchange"
 	    },
 	    accessors: {
 	        value: {
@@ -76,9 +76,10 @@ _tag_('jqtags.date',function(date){
 	    	//this.$.setAttribute("pointer","pointer");
 	    },
 	    onchange : function(e,target){
-	    	if(target!==this.$ || target!== e.originalTarget || (e.firedBy && e.firedBy.el!==target) ){
-	    		return window.preventPropagation(e);
+	    	if(target===this.$ || target=== e.originalTarget || (e.firedBy && e.firedBy.el===target) ){
+          return;
 	    	}
+        return window.preventPropagation(e);
 	    },
 	    valueOnSet : function(e){
 	    	if(changeValue(this.$,this.$.value)){
