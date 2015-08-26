@@ -12,7 +12,7 @@
     "pitana",
     "x-tag"
   ],
-  "require" : {
+  "dependencies" : {
     "jqgeeks-jqtag" : ">=0.0.4",
     "jqmodules-jq2much" : ">=0.0.0",
     "webmodules-moment" : ">=2.10.4",
