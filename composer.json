@@ -6,10 +6,10 @@
     "license": "MIT",
 
     "require": {
-      "jqgeeks/jqtag" : ">=0.0.4",
-      "jqmodules/jq2much" : ">=0.0.0",
+      "webmodules/jqtag" : ">=0.0.4",
       "webmodules/moment" : ">=2.10.4",
-      "webmodules/pikaday" : ">=1.3.3"
+      "jqmodules/pikaday" : ">=1.3.3",
+      "jqmodules/jq2much" : ">=0.0.0"
     }
     
 }
