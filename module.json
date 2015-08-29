@@ -3,7 +3,7 @@
   "jqtags/jq-date": {
     "js": [ "jqtags.date.js"],
     "css": ["jqtags.date.css"],
-    "on" : ["jqmodules/pikaday"]
+    "on" : ["webmodules/moment","jqmodules/pikaday"]
   },
   "jqtags/jq-date/test": {
     "js": [
