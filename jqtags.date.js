@@ -5,7 +5,7 @@ _tag_('jqtags.date', function (date) {
   var moment = _module_("moment");
   var self, $tag, pickerIsOpen = false, editable = false, format;
   var DEFAULT_FORMAT = "DD MMM YYYY";
-  var DEFAULT_DATE_CONVENTION = 0;
+  var DEFAULT_DATE_CONVENTION = 1;
   var M = moment();
 
   //moment("12-25-1995", "MM-DD-YYYY").format("DD-MM-YYYY")
@@ -225,6 +225,11 @@ _tag_('jqtags.date', function (date) {
           dateObj.dd = dateString.substr(3, 1);
           dateObj.yy = dateString.substr(4, 4);
           dateObj.isValid = true;
+        } else {
+          dateObj._d= Date.parse(dateString);
+          if( dateObj._d!=null){
+            return this.getDateFromText(dateObj._d.toString( code==1 ? "dd-MM-yyyy" : "MM-dd-yyyy"),code);
+          }
         }
 
         if (dateObj.isValid) {
@@ -258,6 +263,7 @@ _tag_('jqtags.date', function (date) {
     }
     return moment("INVALID_DATE");
   };
+  date.parse = date.getDateFromText;
 
   date.getMonthFromName = function (monthStr) {
     return  M.month(monthStr).month() + 1;

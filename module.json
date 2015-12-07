@@ -1,7 +1,7 @@
 {
   "name": "jqtags/jq-date",
   "jqtags/jq-date": {
-    "js": [ "jqtags.date.js"],
+    "js": [ "jqtags.date.js","../Datejs/build/date.js"],
     "css": ["jqtags.date.css"],
     "on" : ["webmodules/moment","jqmodules/pikaday"]
   },
