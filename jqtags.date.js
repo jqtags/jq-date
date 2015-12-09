@@ -26,6 +26,7 @@ _tag_('jqtags.date', function (date) {
   var setHTML = function (tag, html) {
     try {
       tag.getElementsByTagName('value')[0].innerHTML = html;
+      tag.getElementsByTagName('value')[0].value = html;
     } catch (e) {
       console.warn("jqtags.date", e);
     }
@@ -135,6 +136,7 @@ _tag_('jqtags.date', function (date) {
           field: $value[0],
           trigger: this.$,//.getElementsByTagName('icon')[0],
           format: format,
+          defaultDate: new Date(),
           onSelect: function (value) {
             //console.error("eee",value,date.picker.toString())
             if (changeValue(self.$, date.picker.toString())) {
