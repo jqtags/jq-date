@@ -67,6 +67,14 @@ _tag_('jqtags.date', function (date) {
       tabindex: {
         type: 'int',
         default: 0
+      },
+      maxdate: {
+        type: "string",
+        default: ""
+      },
+      mindate: {
+        type: "string",
+        default: ""
       }
     },
     attachedCallback: function () {
@@ -136,6 +144,8 @@ _tag_('jqtags.date', function (date) {
           field: $value[0],
           trigger: this.$,//.getElementsByTagName('icon')[0],
           format: format,
+          maxDate : this.$.maxdate ? new Date(this.$.maxdate) : undefined,
+          minDate : this.$.mindate ? new Date(this.$.mindate) : undefined,
           defaultDate: new Date(),
           onSelect: function (value) {
             //console.error("eee",value,date.picker.toString())
