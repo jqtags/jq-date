@@ -42,7 +42,7 @@ _tag_('jqtags.date', function (date) {
       tag.value = "";
       setHTML(tag, "");
     }
-    return (oldValue !== tag.value)
+    return (oldValue !== tag.value);
   };
 
   tag = {
@@ -110,7 +110,7 @@ _tag_('jqtags.date', function (date) {
     makeEditable: function (e, target) {
       if (!editable) {
         var self = this;
-        setHTML(this.$, '<input tabindex=-1 value="' + this.$.value + '">')
+        setHTML(this.$, '<input tabindex=-1 value="' + this.$.value + '">');
         $(this.$).find('input').one("change", function (e2) {
           if (editable) {
             //$tag = jq(e.target).closest('jq-date');
@@ -134,7 +134,7 @@ _tag_('jqtags.date', function (date) {
       self = this;
       //console.info("====",$(this.$).find("input").val())
       if (pickerIsOpen !== true) {
-        pickerIsOpen = true
+        pickerIsOpen = true;
         format = this.$.format;
         var $value = $(this.$).find('value');
         $value.on("change", function (e2) {
@@ -146,7 +146,7 @@ _tag_('jqtags.date', function (date) {
           format: format,
           maxDate : this.$.maxdate ? new Date(this.$.maxdate) : undefined,
           minDate : this.$.mindate ? new Date(this.$.mindate) : undefined,
-          defaultDate: new Date(),
+          defaultDate: new Date($($value[0]).val()),
           onSelect: function (value) {
             //console.error("eee",value,date.picker.toString())
             if (changeValue(self.$, date.picker.toString())) {
@@ -155,7 +155,7 @@ _tag_('jqtags.date', function (date) {
             }
           },
           onClose: function () {
-            pickerIsOpen = false
+            pickerIsOpen = false;
             $value.off();
             date.picker.destroy();
           }
@@ -270,7 +270,7 @@ _tag_('jqtags.date', function (date) {
       }
     } else {
       if ((dateString) > 31516200000) {
-        return moment.unix(dateString)
+        return moment.unix(dateString);
       }
     }
     return moment("INVALID_DATE");
@@ -297,7 +297,7 @@ _tag_('jqtags.date', function (date) {
       return false;
     }
     return true;
-  }
+  };
 
 
   return tag;
