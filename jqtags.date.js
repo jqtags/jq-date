@@ -147,6 +147,7 @@ _tag_('jqtags.date', function (date) {
           maxDate : this.$.maxdate ? new Date(this.$.maxdate) : undefined,
           minDate : this.$.mindate ? new Date(this.$.mindate) : undefined,
           defaultDate: new Date($($value[0]).val()),
+          setDefaultDate: new Date($($value[0]).val()),
           onSelect: function (value) {
             //console.error("eee",value,date.picker.toString())
             if (changeValue(self.$, date.picker.toString())) {
