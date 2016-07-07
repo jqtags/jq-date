@@ -140,6 +140,12 @@ _tag_('jqtags.date', function (date) {
         $value.on("change", function (e2) {
           return window.preventPropagation(e2);
         });
+        self.disbaled_dates = [];
+        self.trigger("onEnableDates", {
+          enableDates : function(_x){
+            self.enabaled_dates = _x;
+          }
+        });
         date.picker = new Pikaday({
           field: $value[0],
           trigger: this.$,//.getElementsByTagName('icon')[0],
@@ -154,6 +160,18 @@ _tag_('jqtags.date', function (date) {
               self.trigger("input");
               self.trigger("change");
             }
+          },
+          disableDayFn: function(date){
+            var d1 = new Date(date.getFullYear(),date.getMonth(),date.getDate()).getTime();
+            var dates = self.enabaled_dates;
+            for(var i=0;i<dates.length;i++){
+              var d2 = new Date(dates[i]);
+              d2 = new Date(d2.getFullYear(),d2.getMonth(),d2.getDate()).getTime();
+              if(d1 == d2){
+                return false;
+              }
+            }
+            return true;
           },
           onClose: function () {
             pickerIsOpen = false;
