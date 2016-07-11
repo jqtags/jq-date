@@ -164,6 +164,9 @@ _tag_('jqtags.date', function (date) {
           disableDayFn: function(date){
             var d1 = new Date(date.getFullYear(),date.getMonth(),date.getDate()).getTime();
             var dates = self.enabaled_dates;
+            if(!dates){
+              return false;
+            }
             for(var i=0;i<dates.length;i++){
               var d2 = new Date(dates[i]);
               d2 = new Date(d2.getFullYear(),d2.getMonth(),d2.getDate()).getTime();
